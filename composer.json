@@ -1,0 +1,20 @@
+# Используем официальный образ PHP с Apache
+FROM php:8.2-apache
+
+# Устанавливаем необходимые расширения PHP (для PostgreSQL)
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql
+
+# Включаем mod_rewrite для Apache (если нужно)
+RUN a2enmod rewrite
+
+# Копируем файлы проекта в папку Apache
+COPY public/ /var/www/html/
+
+# Указываем порт (Render сам подставит переменную $PORT)
+ENV PORT=80
+EXPOSE $PORT
+
+# Запускаем Apache в foreground-режиме
+CMD ["apache2-foreground"]

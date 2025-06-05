@@ -1,2 +1,0 @@
-# Jhate_stats
-Jhatebuff
