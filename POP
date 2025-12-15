@@ -1,0 +1,26 @@
+@startuml
+skinparam handwritten true
+rectangle "Главный экран" {
+  rectangle "ЛОГОТИП" as logo
+  rectangle "Профиль" as profile
+  rectangle "🔍 Поиск ресторана..." as search
+  
+  rectangle "КАТЕГОРИИ:" as cat
+  rectangle "Пицца" as p1
+  rectangle "Суши" as p2
+  rectangle "Бургеры" as p3
+    
+  rectangle "РЕСТОРАНЫ:" as rest
+  rectangle "1. Пицца Плюс\n⭐4.5 • 30 мин" as r1
+  rectangle "2. Суши Весла\n⭐4.7 • 40 мин" as r2
+}
+
+logo - profile
+search -down-> cat
+cat -right-> p1
+p1 -right-> p2
+p2 -right-> p3
+cat -down-> rest
+rest -down-> r1
+r1 -down-> r2
+@enduml
