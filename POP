@@ -1,26 +1,39 @@
 @startuml
-skinparam handwritten true
-rectangle "Главный экран" {
-  rectangle "ЛОГОТИП" as logo
-  rectangle "Профиль" as profile
-  rectangle "🔍 Поиск ресторана..." as search
-  
-  rectangle "КАТЕГОРИИ:" as cat
-  rectangle "Пицца" as p1
-  rectangle "Суши" as p2
-  rectangle "Бургеры" as p3
-    
-  rectangle "РЕСТОРАНЫ:" as rest
-  rectangle "1. Пицца Плюс\n⭐4.5 • 30 мин" as r1
-  rectangle "2. Суши Весла\n⭐4.7 • 40 мин" as r2
+skinparam backgroundColor #F5F5F5
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor #333
+  RoundCorner 10
 }
 
-logo - profile
-search -down-> cat
-cat -right-> p1
-p1 -right-> p2
-p2 -right-> p3
-cat -down-> rest
-rest -down-> r1
-r1 -down-> r2
+rectangle "ЭКРАН РЕСТОРАНА" {
+  rectangle "НАЗАД | ПИЦЦА ПЛЮС ⭐4.5" as header #LightBlue
+  
+  frame "МЕНЮ" {
+    rectangle "ПИЦЦЫ" as cat1 #LightYellow
+    rectangle "Пепперони 550р\n30 см, острая" as item1
+    rectangle "[Добавить +]" as btn1 #LightGreen
+    
+    rectangle "Маргарита 450р" as item2
+    rectangle "[Добавить +]" as btn2 #LightGreen
+    
+    rectangle "НАПИТКИ" as cat2 #LightYellow
+    rectangle "Кола 150р" as item3
+    rectangle "[Добавить +]" as btn3 #LightGreen
+  }
+  
+  rectangle "Корзина: 2 товара на 1150р" as cart #LightPink
+  rectangle "ПЕРЕЙТИ К ОФОРМЛЕНИЮ" as order #Green
+}
+
+header -down-> cat1
+cat1 -down-> item1
+item1 -right-> btn1
+item1 -down-> item2
+item2 -right-> btn2
+item2 -down-> cat2
+cat2 -down-> item3
+item3 -right-> btn3
+item3 -down-> cart
+cart -down-> order
 @enduml
